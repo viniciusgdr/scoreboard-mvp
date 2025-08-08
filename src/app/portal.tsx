@@ -7,13 +7,11 @@ export class MyWindowPortal extends React.Component {
 
   constructor(props: React.PropsWithChildren<{}>) {
     super(props);
-    // Step 1: create a container <div>
     this.containeEl = document.createElement("div");
     this.externalWindow = null;
   }
 
   render() {
-    // Step 2: append props.children to the container <div> that isn't mounted yet
     // @ts-ignore
     return ReactDOM.createPortal(this.props.children, this.containeEl);
   }
@@ -27,10 +25,10 @@ export class MyWindowPortal extends React.Component {
 
 
     if (this.externalWindow) {
-      // add tailwindcss to the external window
       const link = this.externalWindow.document.createElement("link");
+
       link.rel = "stylesheet";
-      link.href = "/tailwind.css";
+      link.href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
       this.externalWindow.document.head.appendChild(link);
       
       this.externalWindow.document.body.appendChild(this.containeEl);
@@ -38,8 +36,6 @@ export class MyWindowPortal extends React.Component {
   }
 
   componentWillUnmount() {
-    // Step 5: This will fire when this.state.showWindowPortal in the parent componentDidMount
-    // become false. So we tidy up by closing the window
     console.log("unmounting...");
   }
 }

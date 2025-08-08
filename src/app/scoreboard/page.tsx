@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { MyWindowPortal } from "./portal";
+import { MyWindowPortal } from "../portal";
 
 type Props = {
   title: string;
