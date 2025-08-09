@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 export class MyWindowPortal extends React.Component {
@@ -25,12 +25,10 @@ export class MyWindowPortal extends React.Component {
 
 
     if (this.externalWindow) {
-      const link = this.externalWindow.document.createElement("link");
+      const script = this.externalWindow.document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4";
+      this.externalWindow.document.head.appendChild(script);
 
-      link.rel = "stylesheet";
-      link.href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
-      this.externalWindow.document.head.appendChild(link);
-      
       this.externalWindow.document.body.appendChild(this.containeEl);
     }
   }
